@@ -18,7 +18,7 @@ test("object IDs reject malformed input", () => {
   assert.throws(() => objectId({ $ne: null }));
   assert.equal(objectId("507f1f77bcf86cd799439011").toHexString(), "507f1f77bcf86cd799439011");
 });
-test("return date is exactly fourteen days later across month boundaries", () => {
+test("return date is exactly seven days later across month boundaries", () => {
   const dates = borrowDates(new Date("2026-10-31T18:00:00Z"));
-  assert.equal(dates.returnDate.toISOString(), "2026-11-14T18:00:00.000Z");
+  assert.equal(dates.returnDate.toISOString(), "2026-11-07T18:00:00.000Z");
 });

@@ -17,5 +17,5 @@ export function objectId(value) {
   return new ObjectId(value);
 }
 export function borrowDates(now = new Date()) {
-  return { borrowDate: now, returnDate: new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000) };
+  return { borrowDate: now, returnDate: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000) };
 }
