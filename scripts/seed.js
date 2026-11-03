@@ -2,7 +2,6 @@ import "dotenv/config";
 import { connectDatabase, closeDatabase } from "../src/database/connection.js";
 
 // Seed only on explicit invocation. Existing user books are never overwritten.
-const origin = process.env.CLIENT_URL || "http://localhost:3000";
 const samples = [
   ["Pride and Prejudice", "Jane Austen", "Fiction", "pride", "Elizabeth Bennet meets the proud Mr Darcy in a sharp, warm story about first impressions, family and finding your own way."],
   ["The Secret Garden", "Frances Hodgson Burnett", "Kids", "garden", "A hidden garden, an unlikely friendship and a curious child bring new life to a quiet house on the Yorkshire moors."],
@@ -15,7 +14,7 @@ try {
   const { db } = await connectDatabase();
   for (const [index, [title, author, category, cover, description]] of samples.entries()) {
     await db.collection("books").updateOne({ seedKey: cover }, { $setOnInsert: {
-      title, author, category, description, image: `${origin}/covers/${cover}.svg`, totalCopies: 3, availableCopies: 3,
+      title, author, category, description, image: `/covers/${cover}.svg`, totalCopies: 3, availableCopies: 3,
       userId: "pataghor-library", userName: "Pataghor Library", userEmail: "library@pataghor.example",
       createdAt: new Date(Date.now() - index * 86400000), seedKey: cover,
     } }, { upsert: true });
