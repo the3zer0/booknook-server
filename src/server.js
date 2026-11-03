@@ -1,5 +1,5 @@
-import { config } from "./config.js";
-import { connectDatabase, closeDatabase } from "./database.js";
+import { config } from "./config/index.js";
+import { connectDatabase, closeDatabase } from "./database/connection.js";
 import { createApp } from "./app.js";
 
 try {

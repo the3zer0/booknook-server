@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { config } from "./config.js";
+import { config } from "../config/index.js";
 
 let client;
 export async function connectDatabase() {

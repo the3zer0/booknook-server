@@ -55,6 +55,7 @@ test("public catalog supports latest six and private lists require identity", as
   for (let index = 0; index < 7; index++) await makeBook();
   const response = await request(app).get("/books?limit=6");
   assert.equal(response.status, 200); assert.equal(response.body.length, 6);
+  assert.ok(response.body.every(book => !("userId" in book) && !("userEmail" in book)));
   assert.ok(response.body.every((book, index, items) => !index || book.createdAt <= items[index - 1].createdAt));
   assert.equal((await request(app).get("/books?mine=true")).status, 401);
   const own = await request(app).get("/books?mine=true").set("x-test-user", "other");

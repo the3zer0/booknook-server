@@ -1,5 +1,6 @@
-import { bookSchema, categories, objectId } from "../lib/validation.js";
-import { HttpError } from "../lib/errors.js";
+import { bookSchema, categories } from "../validations/books.schema.js";
+import { objectId } from "../validations/common.js";
+import { HttpError } from "../utils/errors.js";
 
 export function bookControllers({ db, client }) {
   const books = db.collection("books");
@@ -14,7 +15,8 @@ export function bookControllers({ db, client }) {
       }
       const rawLimit = req.query.limit;
       if (rawLimit && (!/^\d+$/.test(rawLimit) || Number(rawLimit) < 1 || Number(rawLimit) > 100)) throw new HttpError(400, "Limit must be between 1 and 100.");
-      let cursor = books.find(filter).sort({ createdAt: -1, _id: -1 });
+      const projection = req.query.mine === "true" ? {} : { userEmail: 0, userId: 0 };
+      let cursor = books.find(filter, { projection }).sort({ createdAt: -1, _id: -1 });
       if (rawLimit) cursor = cursor.limit(Number(rawLimit));
       res.json(await cursor.toArray());
     },

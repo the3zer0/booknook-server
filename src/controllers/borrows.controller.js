@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { objectId, borrowDates } from "../lib/validation.js";
-import { HttpError } from "../lib/errors.js";
+import { objectId, borrowDates } from "../validations/common.js";
+import { HttpError } from "../utils/errors.js";
 
 export function borrowControllers({ db, client }) {
   const books = db.collection("books");

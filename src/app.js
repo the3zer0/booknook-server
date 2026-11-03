@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import { config } from "./config.js";
-import { errorHandler } from "./lib/errors.js";
-import { createRoutes } from "./routes.js";
+import { config } from "./config/index.js";
+import { errorHandler } from "./utils/errors.js";
+import { createRoutes } from "./routes/index.js";
 
 export function createApp(database, auth) {
   const app = express();

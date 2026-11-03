@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { bookSchema, objectId, borrowDates } from "../src/lib/validation.js";
+import { bookSchema } from "../src/validations/books.schema.js";
+import { objectId, borrowDates } from "../src/validations/common.js";
 
 const book = { title: "A book", author: "A writer", category: "Fiction", image: "https://i.ibb.co/example.jpg", description: "A thoughtful story about home.", totalCopies: 2 };
 test("rejects forged ownership and stock fields", () => {

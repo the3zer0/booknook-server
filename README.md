@@ -22,3 +22,5 @@ Install Node 22 or later and run npm ci. Keep the client in the sibling booknook
 Use a replica set in production for atomic stock updates. Configure the variables from .env.example in your hosting environment. Seed only if you want demonstration titles, after setting the public client origin.
 
 [Client repository and handoff](https://github.com/the3zer0/booknook-client)
+
+[API contract](docs/API.md) · [Production deployment](docs/DEPLOYMENT.md)

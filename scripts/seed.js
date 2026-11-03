@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { connectDatabase, closeDatabase } from "../src/database.js";
+import { connectDatabase, closeDatabase } from "../src/database/connection.js";
 
 // Seed only on explicit invocation. Existing user books are never overwritten.
 const origin = process.env.CLIENT_URL || "http://localhost:3000";
