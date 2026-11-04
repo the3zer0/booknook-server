@@ -5,19 +5,19 @@ import { connectDatabase, closeDatabase } from "../src/database/connection.js";
 const samples = [
   ["Pride and Prejudice", "Jane Austen", "Fiction", "pride", "Elizabeth Bennet meets the proud Mr Darcy in a sharp, warm story about first impressions, family and finding your own way."],
   ["The Secret Garden", "Frances Hodgson Burnett", "Kids", "garden", "A hidden garden, an unlikely friendship and a curious child bring new life to a quiet house on the Yorkshire moors."],
-  ["The Cosmos", "BookNook Reading Circle", "Science", "cosmos", "An introductory community reading guide to stars, planets and the questions that make us look up at the night sky."],
-  ["A Short History", "BookNook Reading Circle", "History", "history", "A community reading guide tracing how everyday people, shared ideas and small decisions shaped the world around us."],
-  ["A Little Wonder", "BookNook Reading Circle", "Kids", "wonder", "A sample collection of gentle adventures for curious young readers, celebrating friendship, imagination and little discoveries."],
-  ["Into the Wild", "BookNook Reading Circle", "Others", "wild", "A sample nature journal about paying attention to familiar trees, changing seasons and the quiet life just outside our doors."],
+  ["The Hobbit", "J. R. R. Tolkien", "Fiction", "cosmos", "Bilbo Baggins leaves his comfortable home for an unexpected journey with a company of dwarves, encountering riddles, danger and a dragon."],
+  ["1984", "George Orwell", "Fiction", "history", "Winston Smith searches for truth and personal freedom in a society ruled by surveillance, propaganda and the constant rewriting of history."],
+  ["To Kill a Mockingbird", "Harper Lee", "Fiction", "wonder", "Through Scout Finch’s childhood in Alabama, a family confronts prejudice, injustice and the difficult work of understanding other people."],
+  ["The Great Gatsby", "F. Scott Fitzgerald", "Fiction", "wild", "Nick Carraway enters the glittering world of Jay Gatsby, where extravagant parties conceal longing, reinvention and the cost of chasing the past."],
 ];
 try {
   const { db } = await connectDatabase();
   for (const [index, [title, author, category, cover, description]] of samples.entries()) {
     await db.collection("books").updateOne({ seedKey: cover }, { $setOnInsert: {
-      title, author, category, description, image: `/covers/${cover}.svg`, totalCopies: 3, availableCopies: 3,
-      userId: "pataghor-library", userName: "BookNook Library", userEmail: "library@pataghor.example",
+      title, author, category, description, image: `/covers/${cover}.jpg`, totalCopies: 3, availableCopies: 3,
+      userId: "pataghor-library", userName: "BookNook Library", userEmail: "hello@booknook.example",
       createdAt: new Date(Date.now() - index * 86400000), seedKey: cover,
     } }, { upsert: true });
   }
-  console.log("Six sample books are ready. Sample guides are explicitly fictional demonstration content.");
+  console.log("Six real titles are ready for the demonstration library.");
 } finally { await closeDatabase(); }
