@@ -4,7 +4,7 @@ import { createApp } from "./app.js";
 
 try {
   const database = await connectDatabase();
-  const server = createApp(database).listen(config.port, () => console.log(`Pataghor API: http://localhost:${config.port}`));
+  const server = createApp(database).listen(config.port, () => console.log(`BookNook API: http://localhost:${config.port}`));
   for (const signal of ["SIGINT", "SIGTERM"]) {
     process.once(signal, () => server.close(async () => { await closeDatabase(); process.exit(0); }));
   }

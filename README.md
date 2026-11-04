@@ -1,4 +1,4 @@
-# Pataghor API
+# BookNook API
 
 Express and MongoDB power the library catalog and borrowing system. The client uses BetterAuth to issue short-lived JWTs. The API verifies the signature, issuer and audience and uses the verified identity for ownership checks.
 
